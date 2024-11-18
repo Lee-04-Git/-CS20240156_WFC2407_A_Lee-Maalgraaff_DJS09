@@ -1,15 +1,32 @@
-// Benefits of TypeScript
-// challenges:
-// - give the screen's innerHTML a string
-// - change the two input values to numbers
+// Number Types mini-challenge 10 10.2
+// Write a function that will only accept numbers and attend to 
+// all TypeScript weakness flags.
+// : number
+const reviewTotalDisplay = document.querySelector('#reviews') as HTMLElement
 
-const button = document.querySelector('.button');
-const firstInput = document.querySelector('#first-input') as HTMLInputElement;
-const secondInput = document.querySelector('#second-input') as HTMLInputElement;
-export const screen = document.querySelector('.screen');
+const reviews = [
+    {
+        name: 'Sheia',
+        stars: 5,
+        loyaltyUser: true,
+        date: '01-04-2021'
+    },
+    {
+        name: 'Andrzej',
+        stars: 3,
+        loyaltyUser: false,
+        date: '28-03-2021'
+    },
+    {
+        name: 'Omar',
+        stars: 4,
+        loyaltyUser: true,
+        date: '27-03-2021'
+    },
+]
 
-function addNumbers(a, b) {
-  screen.innerHTML = a + b
+function showReviewTotal (value : number) {
+  reviewTotalDisplay.innerHTML = 'review total ' + value.toString()
 }
 
-button?.addEventListener('click', () => addNumbers(firstInput.value, secondInput.value));
+showReviewTotal(reviews.length)
