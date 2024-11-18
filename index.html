@@ -1,15 +1,18 @@
 <html>
    <head>
-       <link rel="stylesheet" href="/src/style.css">
+       <link rel="stylesheet" href="./src/style.css">
    </head>
    <body>    
-       <div class="calculator">
-           <input id="first-input" placeholder="first input"></input>
-           <h1>+</h1>
-           <input id="second-input" placeholder="second input"></input>
-           <div class="button"></div>
-           <div class="screen">00.00</div>
+       <div class="nav-bar">
+           <div class="logo"></div>
+           <h3 class="user-container">Welcome
+               <span id="returning-user"></span>
+               <span id="user"></span>
+            </h3>
        </div>
-       <script src="index.pack.js"></script>
+       <div class="container">
+         <h5 id="reviews"></h5>         
+       </div>
+       <script src="./src/index.ts"></script>
    </body>
 </html>
