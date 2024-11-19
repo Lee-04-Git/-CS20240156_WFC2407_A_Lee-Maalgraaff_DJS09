@@ -13,11 +13,15 @@ body {
 
 .nav-bar {
   width: 100%;
-  position: sticky;
+  position: fixed; /* Fixed position to keep it at the top */
+  top: 0; /* Align to the top of the page */
+  left: 0; /* Stretch to the left edge */
+  right: 0; /* Stretch to the right edge */
   background-color: white;
   box-shadow: rgb(0 0 0 / 12%) 0 1px 8px;
   display: flex;
   justify-content: space-between;
+  z-index: 1000; /* Keeps navbar on top of other content */
 }
 
 .logo {
