@@ -1,15 +1,17 @@
-// Fixing the Website
-
-// Can you fix my code to show 'Welcome back Bobby' in the Nav Bar for 
-// our couch surfing website? Do this by assigning types to the parameters
-// we pass to our populateUser function, so that we can be aware of
-// errors in our user objects in the future.
+// Array Types mini-challenge
+// Can you assign the correct Type to the reviews const? Please bear in mind everything
+// we have learnt about String, Boolean, Number, Object and Array Types for this.
 
 const returningUserDisplay = document.querySelector('#returning-user') as HTMLElement
 const userNameDisplay = document.querySelector('#user') as HTMLElement
 const reviewTotalDisplay = document.querySelector('#reviews') as HTMLElement
 
-const reviews = [
+const reviews: {
+  name: string;
+  stars: number;
+  loyaltyUser: boolean;
+  date: string
+}[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -36,20 +38,30 @@ function showReviewTotal(value: number, reviewer: string, isLoyalty: boolean) {
   reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay
 }
 
-showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 
-const you = {
-  userName: 'Bobby',
+const you : {
+  firstName : string;
+  lastName: string;
+  age: number;
+  isReturning: boolean;
+  // stayedAt: (string | number)[]; // union type
+  stayedAt: string[];
+} = {
+  firstName: 'Bobby',
+  lastName: 'Brown',
+  age: 35,
   isReturning: true,
+  stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
 
 
-function populateUser(isReturning : boolean, userName : string ) {
+function populateUser(isReturning : boolean, firstName : string) {
   if (isReturning){
       returningUserDisplay.innerHTML = 'back'
   }
-  userNameDisplay.innerHTML = userName
+  userNameDisplay.innerHTML = firstName
 }
 
-populateUser(you.isReturning, you.userName)
+populateUser(you.isReturning, you.firstName)
 
