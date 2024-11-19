@@ -1,11 +1,12 @@
-// Tuples challenge
-// 1. Add an array to the variable of currentLocation I have added. This array
-// must have your current location, time, and degrees celcius of your location
-// NOTE: make sure to make this a Tuple, to only allow those types in that
-// structure.
-// 2. Add this visually to a footer on your site
+// Enum Types mini-challenge
+// Replace the value of loyaltyUser to a GOLD_USER, SILVER_USER or BRONZE_USER, making sure to
+// use what we learnt about Enums in the previous lesson. Make Sheia GOLD, Andrzej BRONZE 
+// and Omar SILVER.
+// 2. export the enum
+// 3. Fix the function in the utils to show Sheias star as she is a GOLD_USER.
 
 import { showReviewTotal, populateUser } from './utlis'
+import { Permissions } from './enums'
 
 const reviews: {
   name: string;
@@ -50,14 +51,6 @@ const reviews: {
 //   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 // }
 
-
-const ADMIN = 'admin';
-const READ_ONLY = 'read_only';
-
-enum Permissions {
-  ADMIN,
-  READ_ONLY
-}
 
 const you = {
   firstName: 'Bobby',
