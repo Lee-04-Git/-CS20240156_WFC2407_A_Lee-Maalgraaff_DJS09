@@ -1,6 +1,9 @@
-// Object Types Challenge
-// Based on what we discussed we need to make up our Property Objects and array,
-// can you create that array, making sure to assign the correct Types?
+// Tuples challenge
+// 1. Add an array to the variable of currentLocation I have added. This array
+// must have your current location, time, and degrees celcius of your location
+// NOTE: make sure to make this a Tuple, to only allow those types in that
+// structure.
+// 2. Add this visually to a footer on your site
 
 import { showReviewTotal, populateUser } from './utlis'
 
@@ -32,18 +35,36 @@ const reviews: {
 
 
 // User
-const you : {
-  firstName : string;
-  lastName: string;
-  age: number;
-  isReturning: boolean;
-  // stayedAt: (string | number)[]; // union type
-  stayedAt: string[];
-} = {
+// const you : {
+//   firstName : string;
+//   lastName: string;
+//   age: number;
+//   isReturning: boolean;
+//   // stayedAt: (string | number)[]; // union type
+//   stayedAt: string[];
+// } = {
+//   firstName: 'Bobby',
+//   lastName: 'Brown',
+//   age: 35,
+//   isReturning: true,
+//   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
+// }
+
+
+const ADMIN = 'admin';
+const READ_ONLY = 'read_only';
+
+enum Permissions {
+  ADMIN,
+  READ_ONLY
+}
+
+const you = {
   firstName: 'Bobby',
   lastName: 'Brown',
-  age: 35,
+  permissions: Permissions.ADMIN,
   isReturning: true,
+  age: 35,
   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
 
@@ -58,11 +79,11 @@ const properties : {
       code: number;
       country: string;
   };
-  contact: string;
+  contact: [number, string];
   isAvailable: boolean;
 }[] = [
   {
-      image: '',
+      image: '../images/columbian-property.jpg',
       title: 'Colombian Shack',
       price: 45,
       location: {
@@ -71,11 +92,11 @@ const properties : {
           code: 45632,
           country: 'Colombia'
       },
-      contact: 'marywinkle@gmail.com',
+      contact: [+1123495082908, 'marywinkle@gmail.com'],
       isAvailable: true  
   },
   {
-      image: '',
+      image: '../images/poland-property.jpg',
       title: 'Polish Cottage',
       price: 34,
       location: {
@@ -84,11 +105,11 @@ const properties : {
           code: 343903,
           country: 'Poland'
       },
-      contact: 'garydavis@hotmail.com',
+      contact: [+1123495082908, 'garydavis@hotmail.com'],
       isAvailable: false 
   },
   {
-      image: '',
+      image: '../images/london-property.jpg',
       title: 'London Flat',
       price: 23,
       location: {
@@ -97,7 +118,7 @@ const properties : {
           code: 35433,
           country: 'United Kingdom',
       },
-      contact: 'andyluger@aol.com',
+      contact: [+1123495082908, 'andyluger@aol.com'],
       isAvailable: true
   }
 ]
@@ -105,3 +126,20 @@ const properties : {
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
+
+
+// Select the properties container from the DOM
+const propertyContainer = document.querySelector('.properties') as HTMLElement
+
+// Add the properties to the container
+for (let i = 0; i < properties.length; i++) {
+  const card = document.createElement('div')
+  card.classList.add('card')
+  card.innerHTML = properties[i].title
+
+  const image = document.createElement('img')
+  image.setAttribute('src', properties[i].image)
+  card.appendChild(image)
+
+  propertyContainer.appendChild(card)
+}
