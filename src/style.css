@@ -1,84 +1,216 @@
+/* Global Styles */
 body {
   display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial;
-  color: darkgrey;
-  flex-direction: column;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial;
+  color: rgb(169,169,169);
 }
 
+/* Container adjustments for responsive alignment */
 .container {
-  margin: 20px;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.container img {
+  width: 100%;
+}
+
+/* Navbar remains fixed and adjusts padding for smaller screens */
 .nav-bar {
   width: 100%;
-  position: fixed; /* Fixed position to keep it at the top */
-  top: 0; /* Align to the top of the page */
-  left: 0; /* Stretch to the left edge */
-  right: 0; /* Stretch to the right edge */
-  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(255,255,255);
   box-shadow: rgb(0 0 0 / 12%) 0 1px 8px;
   display: flex;
   justify-content: space-between;
-  z-index: 1000; /* Keeps navbar on top of other content */
+  padding: 10px 20px;
+  z-index: 1000;
 }
 
+/* Adjust logo size for smaller screens */
 .logo {
   height: 30px;
   width: 46px;
-  background-size: 47px;
+  background-size: contain;
   background-image: url("../images/sofa.png");
-  margin: 20px;
+  margin: 10px;
 }
 
 .user-container {
   margin: 20px;
-}
-.user-container {
-  margin: 20px;
+  font-size: 14px; /* Scale font size for smaller screens */
 }
 
+/* Properties section updated for stacking */
 .properties {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Center cards */
+  gap: 10px; /* Add spacing between cards */
 }
 
+/* Responsive card styling */
 .card {
-  width: 150px;
-  margin: 5px;
+  width: 100%;
+  max-width: 300px; /* Prevent overly large cards */
+  margin: 10px auto; /* Center each card and add vertical spacing */
   border-radius: 20px;
   padding: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0 1px 8px;
+  text-align: center; /* Center-align content for better readability */
 }
 
+.card img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Footer remains full-width and scales padding */
 .footer {
   width: 100%;
-  background-color: lightcoral;
-  position: absolute;
-  bottom: 0;
+  background-color: rgb(240,128,128);
   text-align: center;
-  padding: 30px;
-  color: white;
+  padding: 30px 0;
+  color: rgb(255,255,255);
+  position: static; /* Ensure it doesn’t overlap content */
 }
 
+/* Review cards align better for smaller screens */
 .review-card {
   padding: 10px;
 }
 
 .reviews {
   display: flex;
+  flex-wrap: wrap; /* Adjust for smaller screens */
+  justify-content: center; /* Center-align reviews */
   padding: 10px;
 }
 
 .break {
   height: 1px;
   width: 90%;
-  background-color: coral;
+  background-color: rgb(255,127,80);
+  margin: 10px auto; /* Center the break line */
+}
+
+button {
+  background-color: rgb(0,128,0);
+  color: rgb(255,255,255);
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: rgb(218,165,32);
 }
 
 #reviews {
   font-size: 15px;
   margin-top: 100px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column; /* Stack navbar items */
+    align-items: center;
+  }
+
+  .logo {
+    margin: 10px auto; /* Center logo */
+  }
+
+  .user-container {
+    margin: 10px 0;
+  }
+
+  .properties {
+    flex-direction: column; /* Stack cards in a single column */
+    align-items: center; /* Center-align the column */
+  }
+
+  .card {
+    max-width: 90%; /* Take most of the screen width */
+  }
+
+  .footer {
+    padding: 15px; /* Reduce padding */
+    font-size: 12px 0; /* Smaller text */
+  }
+
+  #reviews {
+    font-size: 13px; /* Scale font size for readability */
+  }
+}
+
+.main-image {
+  margin-top: 80px; /* Add space below the fixed navbar */
+  max-width: 100%; /* Ensure the image is responsive */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevent inline spacing issues */
+  object-fit: cover; /* Ensure the image fits nicely within its container */
+}
+
+.main-image img {
+  margin-top: 1rem; /* Space between navbar and image (adjustable) */
+  width: 100%; /* Make the image fill the container's width */
+  height: 40rem; /* Increase the height to make the image larger */
+  object-fit: cover; /* Ensure the image covers the area properly */
+}
+
+
+@media (max-width: 480px) {
+  .nav-bar {
+    padding: 10px;
+  }
+
+  .logo {
+    width: 30px;
+    height: 20px; /* Scale down logo */
+  }
+
+  .properties {
+    flex-direction: column; /* Maintain stacking for small screens */
+    align-items: center;
+  }
+
+  .card {
+    max-width: 95%; /* Ensure cards fit smaller screens */
+  }
+
+  .footer {
+    font-size: 10px; /* Smaller text for compact devices */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .main-image img {
+    height: 35rem; /* Adjusted for a medium screen */
+    margin-top: 3rem; /* Slightly larger margin for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-image img {
+    height: 25rem; /* Decreased height for smaller screens */
+    margin-top: 2rem; /* Adjust space for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .main-image img {
+    height: 18rem; /* Further decrease height for very small screens */
+    margin-top: 1.5rem; /* Slightly less margin on very small screens */
+  }
 }
