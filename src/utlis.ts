@@ -1,4 +1,5 @@
-import { LoyaltyUser, Permissions } from "../src/enums"
+import { LoyaltyUser, Permissions } from "../src/enums";
+import  { Review }  from '../src/interfaces';
 
 const reviewTotalDisplay = document.querySelector('#reviews') as HTMLElement
 const returningUserDisplay = document.querySelector('#returning-user') as HTMLElement
@@ -30,17 +31,7 @@ export function makeMultiple(value: number) : string {
     } else return ''
 }
 // Fixed
-export function getTopTwoReviews(reviews: {
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string;
-}[]): {
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string;
-}[] {
+export function getTopTwoReviews(reviews: Review[]): Review[] {
     // Clone the array and sort it to avoid mutating the original array
     const sortedReviews = [...reviews].sort((a, b) => b.stars - a.stars);
     return sortedReviews.slice(0, 2); // Return the top two reviews
