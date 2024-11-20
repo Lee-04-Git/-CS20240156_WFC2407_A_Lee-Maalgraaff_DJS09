@@ -10,6 +10,7 @@
 import { showReviewTotal, populateUser, getTopTwoReviews } from '../src/utlis';
 import { Permissions, LoyaltyUser } from '../src/enums';
 import  { Review, Property }  from '../src/interfaces';
+import  MainProperty  from '../src/classes';
 
 const propertyContainer = document.querySelector('.properties') as HTMLElement
 const reviewContainer = document.querySelector('.reviews') as HTMLElement
@@ -152,18 +153,6 @@ button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation : [string, string, number] = ['South Africa', '16.43', 21]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
-
-class MainProperty {
-  src: string;
-  title: string;
-  reviews: Review[];
-
-  constructor(src: string, title: string, reviews: Review[]) {
-      this.src = src;
-      this.title = title;
-      this.reviews = reviews;
-  }
-}
 
 // Create a MainProperty instance
 let yourMainProperty = new MainProperty(
