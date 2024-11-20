@@ -1,12 +1,15 @@
-// Literal Types
-// 1. Based on what we have learnt about literal types with the price, can you make
-// a Country literal type? You only have to include the countries we are dealing with in 
-// the project.
-// 2. Can you create a file and store all your types aliases in there?
+// Wrapping up our Dashboard
+// add another property card. The Property should have:
+// 1 x picture of a 'Malaysian Hotel' called 'Malia Hotel'
+// It should cost 35/night
+// It's location should be 'Room 4, Malia , Malaysia, 45334'
+// The contact email should be 'lee34@gmail.com
+// The phone number for the property should be +60349822083
+// It should not be available
 
 import { showReviewTotal, populateUser, getTopTwoReviews } from '../src/utlis';
 import { Permissions, LoyaltyUser } from '../src/enums';
-import { Price, Country } from '../src/types';
+import  { Review, Property }  from '../src/interfaces';
 
 const propertyContainer = document.querySelector('.properties') as HTMLElement
 const reviewContainer = document.querySelector('.reviews') as HTMLElement
@@ -14,14 +17,7 @@ const container = document.querySelector('.container') as HTMLElement
 const button = document.querySelector('button') as HTMLElement
 const footer = document.querySelector('.footer') as HTMLElement
 
-let isLoggedIn: boolean;
-
-interface Review {
-  name: string;
-  stars: number;
-  loyaltyUser: LoyaltyUser;
-  date: string;
-}
+// let isLoggedIn: boolean;
 
 // Reviews
 const reviews : Review[]= [
@@ -42,7 +38,6 @@ const reviews : Review[]= [
         stars: 4,
         loyaltyUser: LoyaltyUser.BRONZE_USER,
         date: '27-03-2021',
-        description: 12345
     },
 ]
 
@@ -56,19 +51,7 @@ const you = {
 }
 
 //Properties
-const properties : {
-  image: string;
-  title: string;
-  price: number;
-  location: {
-      firstLine: string;
-      city: string;
-      code: number;
-      country: Country;
-  };
-  contact: [number, string];
-  isAvailable: boolean;
-}[] = [
+const properties :Property[] = [
   {
       image: '../images/colombia-property.jpg',
       title: 'Colombian Shack',
@@ -85,7 +68,7 @@ const properties : {
   {
       image: '../images/poland-property.jpg',
       title: 'Polish Cottage',
-      price: 34,
+      price: 30,
       location: {
           firstLine: 'no 23',
           city: 'Gdansk',
@@ -98,22 +81,35 @@ const properties : {
   {
       image: '../images/london-property.jpg',
       title: 'London Flat',
-      price: 23,
+      price: 25,
       location: {
           firstLine: 'flat 15',
           city: 'London',
-          code: 35433,
+          code: 'SW4 5XW',
           country: 'United Kingdom',
       },
       contact: [+1123495082908, 'andyluger@aol.com'],
       isAvailable: true
-  }
+  },
+  {
+    image: '../images/malaysian-hotel.jpeg',
+    title: 'Malia Hotel',
+    price: 35,
+    location: {
+        firstLine: 'Room 4',
+        city: 'Malia',
+        code: 45334,
+        country: 'Malaysia'
+    },
+    contact: [ +60349822083, 'lee34@gmail.com'],
+    isAvailable: false
+}
 ]
 // Functions
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 populateUser(you.isReturning, you.firstName)
 
-isLoggedIn = true
+// isLoggedIn = true
 
 function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
    if (authorityStatus) {
@@ -138,12 +134,7 @@ for (let i = 0; i < properties.length; i++) {
 
 //Broken code
 let count = 0
-function addReviews(array: {
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string;
-}[] ) : void {
+function addReviews(array: Review[] ) : void {
     if (!count ) {
         count++
         const topTwo = getTopTwoReviews(array)
@@ -161,3 +152,40 @@ button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation : [string, string, number] = ['South Africa', '16.43', 21]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
+
+class MainProperty {
+  src: string;
+  title: string;
+  reviews: Review[];
+
+  constructor(src: string, title: string, reviews: Review[]) {
+      this.src = src;
+      this.title = title;
+      this.reviews = reviews;
+  }
+}
+
+// Create a MainProperty instance
+let yourMainProperty = new MainProperty(
+  '../images/italian-property.jpg', 
+  'Italian House',
+  [{
+      name: 'Olive',
+      stars: 5,
+      loyaltyUser: LoyaltyUser.GOLD_USER,
+      date: '12-04-2021'
+  }]
+);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const mainImageContainer = document.querySelector('.main-image');
+
+  if (mainImageContainer) {
+      // Create an image element and append it to the container
+      const image = document.createElement('img');
+      image.setAttribute('src', yourMainProperty.src);
+      mainImageContainer.appendChild(image);
+  } else {
+      console.error('main-image container not found.');
+  }
+});
