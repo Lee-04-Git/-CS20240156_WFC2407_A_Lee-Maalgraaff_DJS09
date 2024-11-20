@@ -2,7 +2,8 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial;
   color: darkgrey;
   flex-direction: column;
 }
@@ -28,7 +29,7 @@ body {
   height: 30px;
   width: 46px;
   background-size: 47px;
-  background-image: url('../images/sofa.png');
+  background-image: url("../images/sofa.png");
   margin: 20px;
 }
 
@@ -55,9 +56,29 @@ body {
 .footer {
   width: 100%;
   background-color: lightcoral;
-  position:absolute;
-  bottom:0;
+  position: absolute;
+  bottom: 0;
   text-align: center;
   padding: 30px;
   color: white;
+}
+
+.review-card {
+  padding: 10px;
+}
+
+.reviews {
+  display: flex;
+  padding: 10px;
+}
+
+.break {
+  height: 1px;
+  width: 90%;
+  background-color: coral;
+}
+
+#reviews {
+  font-size: 15px;
+  margin-top: 100px;
 }
