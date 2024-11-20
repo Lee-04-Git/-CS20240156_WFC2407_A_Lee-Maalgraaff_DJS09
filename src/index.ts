@@ -1,56 +1,43 @@
-// Enum Types mini-challenge
-// Replace the value of loyaltyUser to a GOLD_USER, SILVER_USER or BRONZE_USER, making sure to
-// use what we learnt about Enums in the previous lesson. Make Sheia GOLD, Andrzej BRONZE 
-// and Omar SILVER.
-// 2. export the enum
-// 3. Fix the function in the utils to show Sheias star as she is a GOLD_USER.
+// Literal Types
+// 1. Based on what we have learnt about literal types with the price, can you make
+// a Country literal type? You only have to include the countries we are dealing with in 
+// the project.
+// 2. Can you create a file and store all your types aliases in there?
 
-import { showReviewTotal, populateUser } from './utlis'
-import { Permissions } from './enums'
+import { showReviewTotal, populateUser, getTopTwoReviews } from '../src/utlis';
+import { Permissions, LoyaltyUser } from '../src/enums';
+import { Price, Country } from '../src/types';
 
-const reviews: {
-  name: string;
-  stars: number;
-  loyaltyUser: boolean;
-  date: string
-}[] = [
+const propertyContainer = document.querySelector('.properties') as HTMLElement
+const reviewContainer = document.querySelector('.reviews') as HTMLElement
+const container = document.querySelector('.container') as HTMLElement
+const button = document.querySelector('button') as HTMLElement
+const footer = document.querySelector('.footer') as HTMLElement
+
+let isLoggedIn: boolean;
+
+// Reviews
+const reviews : any[]= [
     {
         name: 'Sheia',
         stars: 5,
-        loyaltyUser: true,
+        loyaltyUser: LoyaltyUser.GOLD_USER,
         date: '01-04-2021'
     },
     {
         name: 'Andrzej',
         stars: 3,
-        loyaltyUser: false,
+        loyaltyUser: LoyaltyUser.SILVER_USER,
         date: '28-03-2021'
     },
     {
         name: 'Omar',
         stars: 4,
-        loyaltyUser: true,
-        date: '27-03-2021'
+        loyaltyUser: LoyaltyUser.BRONZE_USER,
+        date: '27-03-2021',
+        description: 12345
     },
 ]
-
-
-// User
-// const you : {
-//   firstName : string;
-//   lastName: string;
-//   age: number;
-//   isReturning: boolean;
-//   // stayedAt: (string | number)[]; // union type
-//   stayedAt: string[];
-// } = {
-//   firstName: 'Bobby',
-//   lastName: 'Brown',
-//   age: 35,
-//   isReturning: true,
-//   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
-// }
-
 
 const you = {
   firstName: 'Bobby',
@@ -70,13 +57,13 @@ const properties : {
       firstLine: string;
       city: string;
       code: number;
-      country: string;
+      country: Country;
   };
   contact: [number, string];
   isAvailable: boolean;
 }[] = [
   {
-      image: '../images/columbian-property.jpg',
+      image: '../images/colombia-property.jpg',
       title: 'Colombian Shack',
       price: 45,
       location: {
@@ -117,22 +104,53 @@ const properties : {
 ]
 // Functions
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
-
 populateUser(you.isReturning, you.firstName)
 
+isLoggedIn = true
 
-// Select the properties container from the DOM
-const propertyContainer = document.querySelector('.properties') as HTMLElement
+function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+   if (authorityStatus) {
+       const priceDisplay = document.createElement('div')
+       priceDisplay.innerHTML = price.toString() + '/night'
+       element.appendChild(priceDisplay)
+   }
+}
 
-// Add the properties to the container
+// Add the properties
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement('div')
   card.classList.add('card')
   card.innerHTML = properties[i].title
-
   const image = document.createElement('img')
   image.setAttribute('src', properties[i].image)
   card.appendChild(image)
-
+  showDetails(you.permissions, card, properties[i].price)
   propertyContainer.appendChild(card)
 }
+
+
+//Broken code
+let count = 0
+function addReviews(array: {
+    name: string;
+    stars: number;
+    loyaltyUser: LoyaltyUser;
+    date: string;
+}[] ) : void {
+    if (!count ) {
+        count++
+        const topTwo = getTopTwoReviews(array)
+        for (let i = 0; i < topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button) 
+    }
+}
+
+button.addEventListener('click', () => addReviews(reviews))
+
+let currentLocation : [string, string, number] = ['South Africa', '16.43', 21]
+footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
