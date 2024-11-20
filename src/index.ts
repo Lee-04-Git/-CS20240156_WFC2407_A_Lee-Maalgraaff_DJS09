@@ -16,8 +16,15 @@ const footer = document.querySelector('.footer') as HTMLElement
 
 let isLoggedIn: boolean;
 
+interface Review {
+  name: string;
+  stars: number;
+  loyaltyUser: LoyaltyUser;
+  date: string;
+}
+
 // Reviews
-const reviews : any[]= [
+const reviews : Review[]= [
     {
         name: 'Sheia',
         stars: 5,
