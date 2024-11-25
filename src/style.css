@@ -168,32 +168,6 @@ button:hover {
   object-fit: cover; /* Ensure the image covers the area properly */
 }
 
-
-@media (max-width: 480px) {
-  .nav-bar {
-    padding: 10px;
-  }
-
-  .logo {
-    width: 30px;
-    height: 20px; /* Scale down logo */
-  }
-
-  .properties {
-    flex-direction: column; /* Maintain stacking for small screens */
-    align-items: center;
-  }
-
-  .card {
-    max-width: 95%; /* Ensure cards fit smaller screens */
-  }
-
-  .footer {
-    font-size: 10px; /* Smaller text for compact devices */
-  }
-}
-
-/* Responsive adjustments */
 @media (max-width: 1024px) {
   .main-image img {
     height: 35rem; /* Adjusted for a medium screen */
